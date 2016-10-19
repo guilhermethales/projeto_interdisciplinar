@@ -1,0 +1,50 @@
+# Empty CSS file for your own CSS
+#corpo
+{
+	align-content: center;
+	left: 10%;
+}
+body{
+	background-color: rgba(187, 35, 35, 0.08);
+}
+h1{
+	margin-top: 50px;
+	margin-bottom: 50px;
+	font-weight: bold;
+	font-size: 60px;
+	color: rgba(136, 2, 2, 0.65);
+	text-align: center;
+}
+.text-center{
+	font-size: 18px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	color: #b19090;
+}
+h2{
+	color: rgba(136, 2, 2, 0.65);
+	font-weight: bold;
+	font-size: 35px;
+	text-align: center;
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+.row
+{
+	margin: 0;
+}
+#divNascimento{
+	padding-left: 0;
+	padding-right: 0;
+}
+#formulario{
+	background-color: rgba(210, 173, 96, 0.29);
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+.labels{
+	color: #847f7f;
+}

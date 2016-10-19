@@ -11,13 +11,15 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Doador::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'nome' => $faker->name,
+        'sobrenome' => $faker->firstName,
+        'telefone' => $faker->phoneNumber,
+        'tipo_sangue' => $faker->stateAbbr,
         'email' => $faker->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'data_nasc' => $faker->dateTime
     ];
 });
