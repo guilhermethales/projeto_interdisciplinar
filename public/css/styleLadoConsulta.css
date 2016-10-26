@@ -1,0 +1,26 @@
+
+#formulario{
+	background-color: rgba(251, 0, 0, 0.1);
+	padding-top: 40px;
+	padding-bottom: 40px;
+    box-shadow: 3px 5px 19px -1px rgba(168, 148, 247, 0.52);
+    margin-bottom: 20px;
+}
+#barraDeCima{
+	height: 20px;
+}
+h2{
+	margin: 0px;
+	font-weight: bold;
+	color: #af2f2f;
+	margin-bottom: 20px;
+}
+.form-group{
+	margin: 0;
+	padding: 0;
+	padding-left: 5px;
+}
+#botao{
+	padding-left: 5px;
+	margin-top: 10px;
+}

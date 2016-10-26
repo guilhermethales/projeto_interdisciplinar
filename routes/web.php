@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::post('/adiciona', 'DoadorController@adiciona');
+
+    Route::post('adiciona', 'DoadorController@adiciona');
+    Route::get('lista', 'DoadorController@listaDoadores');
+
+

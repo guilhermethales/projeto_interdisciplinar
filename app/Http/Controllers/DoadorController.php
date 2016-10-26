@@ -6,6 +6,7 @@ use App\Doador;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\DoadorRequest;
 
 class DoadorController extends Controller
 {
@@ -14,9 +15,11 @@ class DoadorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-   public function index()
+   public function listaDoadores()
     {
-        return view('index');
+        $doadores = Doador::orderBy('data_nasc', 'DESC')->paginate(10);
+
+        return view('doadores.listagem')->with(compact('doadores'));
     }
 
     /**
@@ -25,12 +28,10 @@ class DoadorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function adiciona(Request $request)
+    public function adiciona(DoadorRequest $request)
     {
-        $doador = new Doador();
-        $doador->create($request->all());
-
-        return view('index');
+        Doador::create($request->all());
+        return view('index')->with('success ', 'Cadastro enviado com sucesso!');
     }
 
     /**

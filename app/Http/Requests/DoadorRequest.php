@@ -13,7 +13,7 @@ class DoadorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class DoadorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'nome' => 'required|max:40',
+            'sobrenome' => 'required|max:40',
+            'telefone' => 'required',
+            'email' => 'required',
+            'data_nasc' => 'required',
         ];
     }
 }
