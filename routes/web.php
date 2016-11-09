@@ -17,6 +17,12 @@ Route::get('/', function () {
 
 
     Route::post('adiciona', 'DoadorController@adiciona');
-    Route::get('lista', 'DoadorController@listaDoadores');
+    Route::get('doadores',['middleware' => 'auth', 'uses' => 'DoadorController@listaDoadores']);
+    Route::get('mostra/{id}', 'DoadorController@mostra')
+    ->where('id', '[0-9]+');
+    Route::get('/doadores/filtrarDoador', 'DoadorController@filtrarDoador');
 
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

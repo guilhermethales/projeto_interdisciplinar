@@ -21,31 +21,19 @@ class DoadorController extends Controller
 
         return view('doadores.listagem')->with(compact('doadores'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function adiciona(DoadorRequest $request)
     {
         Doador::create($request->all());
         return view('index')->with('success ', 'Cadastro enviado com sucesso!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-/*
-    public function show($id)
+    public function mostra($id)
     {
-        //
+        $d = Doador::find($id);
+
+        return view('doadores.detalhes')->with('d',$d);
     }
-*/
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -85,4 +73,48 @@ class DoadorController extends Controller
         //
     }
 */
+    public function filtrarDoador(){
+        $tipoSangue = Request::get('/doadores/filtrarDoador');
+        $doador = Doador::orderBy('data', 'ASC');
+
+        switch ($tipoSangue) {
+            case 'ap':
+                return $doador->where($doador->tipo_sangue == "A+")->paginate();
+                break;
+
+            case 'an':
+                return $doador->where($doador->tipo_sangue == "A-")->paginate(10);
+                break;
+
+            case 'bp':
+                return $doador->where($doador->tipo_sangue == "B+")->paginate(10);
+                break;
+
+            case 'bn':
+                return $doador->where($doador->tipo_sangue == "B-")->paginate(10);
+                break;
+
+            case 'abp':
+                return $doador->where($doador->tipo_sangue == "AB+")->paginate(10);
+                break;
+
+            case 'abn':
+                return $doador->where($doador->tipo_sangue == "AB-")->paginate(10);
+                break;
+
+            case 'op':
+                return $doador->where($doador->tipo_sangue == "O+")->paginate(10);
+                break;
+
+            case 'on':
+                return $doador->where($doador->tipo_sangue == "O-")->paginate(10);
+                break;
+
+            default:
+                echo 'erro';
+                break;
+        }
+
+        return view('doadores.listagem')->with('doadores', $doador);
+    }
 }

@@ -1,17 +1,39 @@
-@extends('layouts.principal')
+@extends('layouts.app')
 
-@section('conteudo')
+@section('content')
 <h1>Lista de Doadores</h1>
 
 	<div class="box">
 
         <div class="container">
-        	<form method="get" action="/doadores/pesquisa">
-   				<input type="text" name="busca" value="" class="form-control pesquisa" placeholder="Pesquise pelo nome do doador" />
-   			</form>
+            <div class="form-group">
+                <form method="get" action="/pesquisa">
+                    <input type="text" name="busca" value="" class="form-control pesquisa" placeholder="Pesquise pelo nome do doador" />
+                </form>
+            </div>
 
-        <br>
-	 <div class="box-body">
+            <div class="form-group">
+                <div class="form-group nome">
+                    <p>Filtrar por Tipo Sanguíneo:</p>
+                </div>
+
+                <div class="form-group col-md-3 filtroDoador">
+                    <form method="get" action="/doadores/filtrarDoador">
+                        <select name="filtrarDoador" class="form-control select">
+                            <option value="ap">A+</option>
+                            <option value="an">A-</option>
+                            <option value="bp">B+</option>
+                            <option value="bn">B-</option>
+                            <option value="abp">AB+</option>
+                            <option value="abn">AB-</option>
+                            <option value="op">O+</option>
+                            <option value="on">O-</option>
+                        </select>
+
+                        <button class="btn btn-primary" type="submit">Buscar</button>
+                    </form>
+                 </div>
+
       	<table id="example1" class="table table-bordered table-striped">
 			<thead>
 				<tr>
@@ -20,33 +42,44 @@
 					<th>Telefone</th>
 					<th>Tipo Sanguíneo</th>
 					<th>Data Nascimento</th>
+                    <th colspan="3">Ações</th>
 				</tr>
 			</thead>
+
 			<tbody>
-@foreach($doadores as $d)
-    <tr>
-        <td>{{ $d->nome }}</td>
-        <td>{{ $d->sobrenome }}</td>
-        <td>{{ $d->telefone }}</td>
-        <td>{{ $d->tipo_sangue }}</td>
-        <td>{{ date('d/m/Y', strtotime($d->data_nasc)) }}</td>
-
-    </tr>
- @endforeach
-    </tbody>
-
-    </table>
+                @foreach($doadores as $d)
+                 <tr>
+                    <td>{{ $d->nome }}</td>
+                    <td>{{ $d->sobrenome }}</td>
+                    <td>{{ $d->telefone }}</td>
+                    <td>{{ $d->tipo_sangue }}</td>
+                    <td>{{ date('d/m/Y', strtotime($d->data_nasc)) }}</td>
+                    <td width="20px">
+                        <a href="{{action('DoadorController@mostra', $d->id)}}" title="Visualizar">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
+                    </td>
+                    <td width="20px">
+                        <a href="" title="Editar">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </td>
+                    <td width="20px">
+                        <a data-toggle="modal" data-target="#delete-modal" href="#"
+                           data-href="/doadores/remove/{{ $d->id }}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                 </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
+            {!!$doadores->render()!!}
         </div>
     <!-- /.box-body -->
 
-    </div>
-
-
-
-
             <!-- Modal DELETE -->
-
     <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

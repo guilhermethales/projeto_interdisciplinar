@@ -18,7 +18,6 @@ $factory->define(App\Doador::class, function (Faker\Generator $faker) {
         'nome' => $faker->name,
         'sobrenome' => $faker->firstName,
         'telefone' => $faker->phoneNumber,
-        'tipo_sangue' => $faker->stateAbbr,
         'email' => $faker->safeEmail,
         'data_nasc' => $faker->dateTime
     ];
