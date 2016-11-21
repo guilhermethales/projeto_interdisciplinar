@@ -84,15 +84,7 @@
                         Nome
                     </label>
                     <input type="text" class="form-control" name="nome" value="{{old('nome')}}" required
-                    pattern="[a-z\s]+$">
-                </div>
-                <div class="form-group col-md-6">
-
-                    <label class="labels">
-                        Sobrenome
-                    </label>
-                    <input type="text" class="form-control" name="sobrenome" value="{{old('sobrenome')}}" required
-                    pattern="[a-z\s]+$">
+                    pattern="[a-zA-Z\s]+$">
                 </div>
                 <div class="form-group col-md-4">
 

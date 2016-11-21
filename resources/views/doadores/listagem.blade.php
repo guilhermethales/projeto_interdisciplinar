@@ -18,16 +18,16 @@
                 </div>
 
                 <div class="form-group col-md-3 filtroDoador">
-                    <form method="get" action="/doadores/filtrarDoador">
+                    <form method="get" action="/filtrarDoador">
                         <select name="filtrarDoador" class="form-control select">
-                            <option value="ap">A+</option>
-                            <option value="an">A-</option>
-                            <option value="bp">B+</option>
-                            <option value="bn">B-</option>
-                            <option value="abp">AB+</option>
-                            <option value="abn">AB-</option>
-                            <option value="op">O+</option>
-                            <option value="on">O-</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
                         </select>
 
                         <button class="btn btn-primary" type="submit">Buscar</button>
@@ -38,7 +38,6 @@
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<th>Sobrenome</th>
 					<th>Telefone</th>
 					<th>Tipo Sanguíneo</th>
 					<th>Data Nascimento</th>
@@ -50,7 +49,6 @@
                 @foreach($doadores as $d)
                  <tr>
                     <td>{{ $d->nome }}</td>
-                    <td>{{ $d->sobrenome }}</td>
                     <td>{{ $d->telefone }}</td>
                     <td>{{ $d->tipo_sangue }}</td>
                     <td>{{ date('d/m/Y', strtotime($d->data_nasc)) }}</td>

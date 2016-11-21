@@ -16,8 +16,8 @@ class CreateDoadoresTable extends Migration
         Schema::create('doadores', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome',100);
-            $table->string('sobrenome', 100);
             $table->string('telefone');
+            $table->string('tipo_sangue');
             $table->string('email');
             $table->date('data_nasc');
             $table->timestamps();

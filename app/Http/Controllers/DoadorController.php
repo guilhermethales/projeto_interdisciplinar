@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Doador;
-use Illuminate\Http\Request;
 
-use App\Http\Requests;
+
+use Request;
 use App\Http\Requests\DoadorRequest;
 
 class DoadorController extends Controller
@@ -67,47 +67,49 @@ class DoadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-/*
-    public function destroy($id)
-    {
-        //
-    }
-*/
+
+   public function remove($id)
+	{
+		$doador = Doador::find($id);
+        $doador->delete();
+
+		return redirect(action('DoadorController@listaDoadores'))->with('success', 'Doador removido com sucesso!');
+	}
+
     public function filtrarDoador(){
-        $tipoSangue = Request::get('/doadores/filtrarDoador');
-        $doador = Doador::orderBy('data', 'ASC');
+        $tipoSangue = Request::get('filtrarDoador');
 
         switch ($tipoSangue) {
-            case 'ap':
-                return $doador->where($doador->tipo_sangue == "A+")->paginate();
+            case 'A+':
+                $filtro =  Doador::where('tipo_sangue','=',$tipoSangue)->paginate(10);
                 break;
 
-            case 'an':
-                return $doador->where($doador->tipo_sangue == "A-")->paginate(10);
+            case 'A-':
+                $filtro = Doador::where('tipo_sangue','=',$tipoSangue)->paginate(10);
                 break;
 
-            case 'bp':
-                return $doador->where($doador->tipo_sangue == "B+")->paginate(10);
+            case 'B+':
+                $filtro =  Doador::where('tipo_sangue','=',$tipoSangue)->paginate(10);
                 break;
 
-            case 'bn':
-                return $doador->where($doador->tipo_sangue == "B-")->paginate(10);
+            case 'B-':
+                $filtro = Doador::where('tipo_sangue','=',$tipoSangue)->paginate(10);
                 break;
 
-            case 'abp':
-                return $doador->where($doador->tipo_sangue == "AB+")->paginate(10);
+            case 'AB+':
+                $filtro =  Doador::where('tipo_sangue','=',$tipoSangue)->paginate(10);
                 break;
 
-            case 'abn':
-                return $doador->where($doador->tipo_sangue == "AB-")->paginate(10);
+            case 'AB-':
+                $filtro =  Doador::where('tipo_sangue','=',$tipoSangue)->paginate(10);
                 break;
 
-            case 'op':
-                return $doador->where($doador->tipo_sangue == "O+")->paginate(10);
+            case 'O+':
+                $filtro =  Doador::where('tipo_sangue','=',$tipoSangue)->paginate(10);
                 break;
 
-            case 'on':
-                return $doador->where($doador->tipo_sangue == "O-")->paginate(10);
+            case 'O-':
+                $filtro =  Doador::where('tipo_sangue','=',$tipoSangue)->paginate(10);
                 break;
 
             default:
@@ -115,6 +117,14 @@ class DoadorController extends Controller
                 break;
         }
 
-        return view('doadores.listagem')->with('doadores', $doador);
+        return view('doadores.listagem')->with('doadores', $filtro);
+    }
+
+    public function pesquisa(){
+        $pesquisa = Request::get('busca');
+        $doadores = Doador::where('nome','like','%'.$pesquisa.'%')
+            ->orderBy('data_nasc','DESC')->paginate(10);
+
+        return view('doadores.listagem')->with('doadores', $doadores);
     }
 }

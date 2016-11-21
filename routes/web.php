@@ -20,7 +20,9 @@ Route::get('/', function () {
     Route::get('doadores',['middleware' => 'auth', 'uses' => 'DoadorController@listaDoadores']);
     Route::get('mostra/{id}', 'DoadorController@mostra')
     ->where('id', '[0-9]+');
-    Route::get('/doadores/filtrarDoador', 'DoadorController@filtrarDoador');
+    Route::get('/doadores/remove/{id}', 'DoadorController@remove');
+    Route::get('/filtrarDoador', 'DoadorController@filtrarDoador');
+    Route::get('/pesquisa', 'DoadorController@pesquisa');
 
 
 Auth::routes();

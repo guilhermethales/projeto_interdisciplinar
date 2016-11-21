@@ -25,7 +25,6 @@ class DoadorRequest extends FormRequest
     {
         return [
             'nome' => 'required|max:40',
-            'sobrenome' => 'required|max:40',
             'telefone' => 'required',
             'email' => 'required',
             'data_nasc' => 'required',
