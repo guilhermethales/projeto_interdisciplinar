@@ -17,6 +17,8 @@
                     <p>Filtrar por Tipo Sanguíneo:</p>
                 </div>
 
+                @include('partials.alerts')
+
                 <div class="form-group col-md-3 filtroDoador">
                     <form method="get" action="/filtrarDoador">
                         <select name="filtrarDoador" class="form-control select">

@@ -8,13 +8,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Detalhes Doador {{$d->nome}}</h1>
+    <h1>Doador {{$d->nome}}</h1>
         <div class="container">
 
             <ul class="list-group">
                 <li class="list-group-item"><b>Id:</b> {{ $d->id }}</li>
                 <li class="list-group-item"><b>Nome:</b> {{ $d->nome }}</li>
-                <li class="list-group-item"><b>Sobrenome:</b> {{ $d->sobrenome }}</li>
                 <li class="list-group-item"><b>Telefone:</b> {{ $d->telefone }}
                 <li class="list-group-item"><b>Tipo Sanguíneo:</b> {{ $d->tipo_sangue }}
                 <li class="list-group-item"><b>Data de Nascimento:</b> {{ date('d/m/Y', strtotime($d->data_nasc)) }}</li>
