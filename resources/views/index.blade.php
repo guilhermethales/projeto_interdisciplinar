@@ -4,6 +4,9 @@
 <div class="hero-unit">
     <h1>Projeto Doador Voluntário!</h1>
 </div>
+
+@include('partials.alerts')
+
 <div class="carousel slide" id="carousel-597538">
     <ol class="carousel-indicators">
         <li class="active" data-slide-to="0" data-target="#carousel-597538">
@@ -150,6 +153,6 @@
     </div>
 <br>
     <footer class="panel-footer">
-        <p class="text-center">Todos os Direitos Reservados</p>
+        <p class="text-center">&copy Copyright Todos os Direitos Reservados SI1A UNA</p>
     </footer>
 @stop

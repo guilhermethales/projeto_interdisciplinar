@@ -24,7 +24,7 @@ class DoadorController extends Controller
     public function adiciona(DoadorRequest $request)
     {
         Doador::create($request->all());
-        return view('index')->with('success ', 'Cadastro enviado com sucesso!');
+        return view('home');
     }
 
     public function mostra($id)
